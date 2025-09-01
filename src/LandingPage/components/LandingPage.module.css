@@ -1,0 +1,17 @@
+.mask {
+  background: linear-gradient(to right, #6c16e9d9, #2a41e380);
+
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='55%25' y='10%25' width='20%25' height='80%25' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='white'/%3E%3Crect x='55%25' y='10%25' width='20%25' height='80%25' fill='black'/%3E%3C/svg%3E");
+
+  -webkit-mask-mode: luminance;
+  mask-mode: luminance;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+
+  pointer-events: none;
+}
