@@ -1,16 +1,9 @@
 import axios from 'axios'
-
-axios.defaults.withCredentials = true
+// axios defaults configured in `src/main.tsx`
 
 // Get all posts
 export const getAllPosts = async () => {
   const res = await axios.get('/api/posts')
-  return res.data
-}
-
-// Get a single post by ID
-export const getPostById = async (id: string) => {
-  const res = await axios.get(`/api/posts/${id}`)
   return res.data
 }
 
@@ -20,8 +13,14 @@ export const getCommunityPosts = async (communityId: string) => {
   return res.data
 }
 
+// Get a single post by ID
+export const getPostById = async (id: string) => {
+  const res = await axios.get(`/api/posts/${id}`)
+  return res.data
+}
+
 // Create a new post
-export const createPost = async (title: string, content: string, authorID: string, communityID: string, spaceID: string | null = null) => {
+export const createPost = async (title: string, content: string, authorID: string,  spaceID: string|null = null, communityID: string = "6888ab016820942a688bbdad",) => {
   const res = await axios.post('/api/posts', {
     title,
     content,

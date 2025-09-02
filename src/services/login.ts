@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.withCredentials = true; 
+// axios defaults configured in `src/main.tsx`
 const baseUrl = '/auth/login'
 
 const login = async (username : string, password : string) => {

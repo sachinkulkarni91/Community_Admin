@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useUser } from '../Contexts/UserContext'
 import displayError from '../utils/error-toaster'
-import { editCommunity, editCommunityPhoto } from '../services/communities'
+import { editCommunityByName, editCommunityPhotoByName } from '../services/communities'
 import ImageUpload from './ImageUpload'
 import Input from './Input'
 
@@ -27,10 +27,10 @@ const EditCommunity = ({ref, setVisible, id, oldName, oldDescription} : Props) =
     try {
       let newCommunity = null;
       if (file) {
-        newCommunity = await editCommunityPhoto(id, file);
+        newCommunity = await editCommunityPhotoByName(oldName, file);
       }
       if (name !== oldName || desc !== oldDescription) {
-        newCommunity = await editCommunity(id, name, desc);
+        newCommunity = await editCommunityByName(oldName, name, desc);
       }
 
       setUser((u) => {
@@ -38,9 +38,7 @@ const EditCommunity = ({ref, setVisible, id, oldName, oldDescription} : Props) =
       const newCommunities = [...u.communities, {
         name: newCommunity.name,
         id: newCommunity.id,
-        profilePhoto: newCommunity.profilePhoto,
-        description: newCommunity.description,
-        members: newCommunity.members,
+        profilePhoto: newCommunity.profilePhoto
       }];
       return {
         ...u,
@@ -57,40 +55,43 @@ const EditCommunity = ({ref, setVisible, id, oldName, oldDescription} : Props) =
   }
   return (
     <>
-    <div ref={ref} className="fixed top-[20%] left-1/2 ml-[-16.6667%] w-1/3 max-h-[1000px] bg-post py-8 px-6 z-40 rounded-2xl flex flex-col min-h-[500px] overflow-scroll">
+    <div className="fixed inset-0 bg-black/50 z-30 flex items-center justify-center">
+      <div ref={ref} className="bg-post py-6 px-6 z-40 rounded-2xl flex flex-col w-1/3 max-w-md max-h-[90vh] shadow-2xl">
+        <div className='rounded-2xl mb-6 h-20'>
+          <img className="rounded-2xl object-cover h-full w-full" src="/assets/generic4.jpg" alt="generic image" />
+        </div>
+        <div className='font-bold font-condensed text-xl text-left mb-4 text-text'>Edit an existing community</div>
+        
+        <div className='mb-6'>
+          <div className='text-sm text-text mb-3 font-medium text-left'>Profile Picture</div>
+          <ImageUpload width="64" height="64" setFile={setFile} />
+        </div>
+        
+        <Input id="Name" type="text" label="Name" placeholder='Enter community Name' value={name} setValue={setName} />
+        <Input id="Description" type="text" label="Description" placeholder='Enter community Description' value={desc} setValue={setDesc} />
 
-      <div className='rounded-2xl mb-8'>
-      <img className="w-full rounded-2xl" src="/assets/generic4.jpg" alt="generic image" />
-      </div>
-      <div className='font-bold font-condensed text-2xl text-left mb-6 text-text'>Edit an existing community</div>
-      <div className='flex gap-4 items-center mb-6'>
-        <ImageUpload width="54" height="54" setFile={setFile}/>
-      </div>
-      <Input id="Name" type="text" label="Name" placeholder='Enter your Name' value={name} setValue={setName} />
-      <Input id="Description" type="text" label="Description" placeholder='Enter your Description' value={desc} setValue={setDesc} />
-
-      <div className='mt-8 flex justify-between'>
-        <div className='py-2 px-4 rounded-2xl text-lightText text-[16px] items-center cursor-pointer' onClick={() => {setVisible(false)}}>Cancel</div>
-        <button className='py-2 px-4 rounded-2xl text-white bg-[#00338D] flex   text-[16px] items-center' onClick={handleEditCommunity}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="currentColor"
-          className="bi bi-arrow-right-short"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fillRule="evenodd"
-            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 
-            .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
-          />
-        </svg>
-        Edit Community
-        </button>
+        <div className='mt-6 flex justify-between'>
+          <div className='py-2 px-4 rounded-2xl text-lightText text-sm items-center cursor-pointer' onClick={() => {setVisible(false)}}>Cancel</div>
+          <button className='py-2 px-4 rounded-2xl text-white bg-[#00338D] flex text-sm items-center' onClick={handleEditCommunity}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            className="bi bi-arrow-right-short"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 
+              .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
+            />
+          </svg>
+          Edit Community
+          </button>
+        </div>
       </div>
     </div>
-    <div className='fixed z-30 w-full h-full bg-black opacity-30 top-0 left-0'></div>
     </>
   )
 }

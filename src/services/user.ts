@@ -1,35 +1,11 @@
 import axios from 'axios'
-axios.defaults.withCredentials = true; 
+// axios defaults (baseURL + withCredentials) are configured centrally in `src/main.tsx`
 const baseUrl = '/api/me'
-
-// Add request interceptor to handle authentication
-axios.interceptors.request.use((config) => {
-  // Add any required headers here if needed
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
-
-// Add response interceptor to handle authentication errors
-axios.interceptors.response.use((response) => {
-  return response;
-}, (error) => {
-  if (error.response?.status === 401 || error.response?.status === 403) {
-    console.warn('Authentication required for API call:', error.config?.url);
-  }
-  return Promise.reject(error);
-});
 
 // Fetch the current user
 export const getUser = async () => {
   const user =  await axios.get(baseUrl)
   return user.data
-}
-
-// Fetch all posts made by the current user
-export const getUserPosts  = async () : Promise<RawPost[]> => {
-  const posts = await axios.get(`${baseUrl}/posts`)
-  return posts.data
 }
 
 // Upload a new profile photo

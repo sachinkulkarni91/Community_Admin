@@ -44,18 +44,14 @@ const CommentSection = ({postID} : Props) => {
   }
 
   return (
-    <div className='flex flex-col gap-3 w-[70%] p-2 relative max-h-[380px] overflow-y-auto scrollbar-hide'>
-      <div className='w-full bg-secondary rounded-xl relative'>
-        <input className='w-full outline-none px-4 py-3 rounded-xl text-sm' type="text" placeholder="What are your thoughts?" value={newComment} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setNewComment(e.currentTarget.value)}}/>
-        <svg className='absolute right-4 top-[30%] text-lightText w-4 h-4' xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill='currentColor' onClick={handleNewComment}><path d="M120-160v-640l760 320zm80-120 474-200-474-200v140l240 60-240 60zm0 0v-400z"/></svg>
+    <div className='flex flex-col gap-2 w-full p-3 relative'>
+      <div className='w-full bg-secondary rounded-lg relative'>
+        <input className='w-full outline-none px-4 py-3 text-sm' type="text" placeholder="What are your thoughts?" value={newComment} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {setNewComment(e.currentTarget.value)}}/>
+        <svg className='absolute right-6 top-[30%] text-lightText cursor-pointer' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -960 960 960" fill='currentColor' onClick={handleNewComment}><path d="M120-160v-640l760 320zm80-120 474-200-474-200v140l240 60-240 60zm0 0v-400z"/></svg>
       </div>
-      <div className='flex flex-col gap-2'>
-        {
-          comments.length > 0 ? comments.map(c => 
-            <Comment key={c.id} profilePhoto={c.author.profilePhoto} id={c.id} author={c.author.name} body={c.content} likes={c.likes.length}></Comment>
-          ) : null
-        }
-      </div>
+      {
+        comments.length > 0 ? comments.map(c => <Comment key={c.id} profilePhoto={c.author.profilePhoto}  id={c.id} author={c.author.name} body={c.content} likes={c.likes.length}></Comment>) : null
+      }
     </div>
   )
 }

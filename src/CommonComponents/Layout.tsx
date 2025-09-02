@@ -1,21 +1,23 @@
-import { useState } from "react"
-import Banner from "./Banner"
-import Sidebar from "./Sidebar"
-import Topbar from "./Topbar"
-import { Outlet } from "react-router-dom"
+import { useState } from 'react'
+import AdminSidebar from './AdminSidebar'
+import Topbar from './Topbar'
+import WelcomeBanner from './WelcomeBanner'
+import Breadcrumbs from './Breadcrumbs'
+import { Outlet } from "react-router-dom";
 
-  const Layout = () => {
-  const [banner, setBanner] = useState(true)
-  const [selected, setSelected] = useState(1)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  
+const Layout = () => {
+  const [selected, setSelected] = useState<number>(1)
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false)
   return (
-   <div className='w-full h-full bg-secondary relative flex flex-col'>
-      <Topbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}></Topbar>
-      <Banner banner={banner} setBanner={setBanner}></Banner>
-        <div className='rounded-2xl flex-1 w-full flex gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 h-full overflow-hidden justify-between'> 
-        <Sidebar selected={selected} setSelected={setSelected} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}></Sidebar> 
-        <Outlet></Outlet>
+     <div className='w-full h-full bg-secondary relative flex flex-col'>
+      <Topbar></Topbar>
+      <WelcomeBanner />
+      <div className='w-full flex gap-2 lg:gap-4 h-[calc(100vh-115px)] lg:h-[calc(100vh-108px)] overflow-hidden'> 
+        <AdminSidebar selected={selected} setSelected={setSelected} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}></AdminSidebar>
+        <div className='flex-1 min-w-0 h-full overflow-auto px-2 lg:px-6 py-4'>
+          <Breadcrumbs />
+          <Outlet />
+        </div>
       </div>
     </div>
   )

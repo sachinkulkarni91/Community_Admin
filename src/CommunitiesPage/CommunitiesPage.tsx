@@ -1,24 +1,27 @@
-import { useUser } from "../Contexts/UserContext";
-import CommunityCard from "./components/CommunityCard"
+import { useEffect, useState } from 'react';
+import { getAllCommunities } from '../services/communities';
+import AllCommunities from '../CommonComponents/AllCommunities';
+
 
 const CommunitiesPage = () => {
-  const { user } = useUser();
-  const userCommunities = user?.communities || [];
+  const [allCommunities, setAllCommunities] = useState<RawCommunity[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getAllCommunities();
+      setAllCommunities(data);
+    };
+    fetchData();
+  }, []);
+
+  const handleRefresh = async () => {
+    const data = await getAllCommunities();
+    setAllCommunities(data);
+  }
+
   return (
-    <div className='flex-1 my-6 flex flex-col gap-6'>
-      <div className='font-bold text-[24px] font-condensed text-text text-left'>My Communities</div>
-      <div className="flex flex-wrap gap-6">
-        {userCommunities.map((community) => (
-          <CommunityCard
-            id={community.id}
-            key={community.id}
-            src={community.profilePhoto}
-            title={community.name}
-            members={community.members.length}
-            description={community.description}
-          />
-        ))}
-      </div>
+    <div className='flex-1 mt-12'>
+      <AllCommunities allCommunities={allCommunities} handleRefresh={handleRefresh}></AllCommunities>
+
     </div>
   )
 }

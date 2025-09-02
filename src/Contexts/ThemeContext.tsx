@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from 'react';
 
 // Context to manage theme state for light mode and dark mode
@@ -9,7 +10,7 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<string>(''); // Default theme is light
+  const [theme, setTheme] = useState<string>('')
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

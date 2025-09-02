@@ -1,26 +1,26 @@
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react-swc'
-import dotenv from 'dotenv'
 
-dotenv.config()  // Load environment variables
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-  },
   server: {
-    port: 3000,
+    port: 5174,
     proxy: {
       '/auth': {
-        target: process.env.VITE_API_URL || 'http://localhost:3009',
+        target: 'http://localhost:3009',
         changeOrigin: true,
+        secure: false,
+        ws: true,
+        rewrite: (path) => path,
       },
       '/api': {
-        target: process.env.VITE_API_URL || 'http://localhost:3009',
+        target: 'http://localhost:3009',
         changeOrigin: true,
+        secure: false,
+        ws: true,
+        rewrite: (path) => path,
       },
     },
   },
