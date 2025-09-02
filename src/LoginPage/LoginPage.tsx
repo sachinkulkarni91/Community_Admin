@@ -84,7 +84,17 @@ const LoginPage = () => {
       </div>
       
     
-      <div className='w-2/5 h-3/4 overflow-hidden rounded-4xl'><img className='w-full h-full object-cover object-[75%_85%]' src="/assets/generic.jpg" alt="" /></div></div>
+      <div className='w-2/5 h-3/4 overflow-hidden rounded-4xl'>
+        <img 
+          className='w-full h-full object-cover object-[75%_85%]' 
+          src="/assets/generic4.jpg" 
+          alt="Admin Dashboard" 
+          onError={(e) => {
+            console.error('Image failed to load:', e);
+            e.currentTarget.src = "/assets/generic1.png";
+          }}
+        />
+      </div></div>
   )
 }
 
