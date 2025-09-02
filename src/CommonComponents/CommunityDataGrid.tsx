@@ -85,7 +85,7 @@ const CommunityDataGrid = ({ rows, setRows }: Props) => {
   return (
     <div className='w-full h-full'>
       <div className='h-[calc(100%-64px)]'>
-        {editCommunityDisplay && <EditCommunity id={id} oldName={name} oldDescription={description} ref={editCommunityRef} setVisible={setEditCommunityDisplay}></EditCommunity>}
+        {editCommunityDisplay && <EditCommunity oldName={name} oldDescription={description} ref={editCommunityRef} setVisible={setEditCommunityDisplay}></EditCommunity>}
         {inviteUserDisplay && <InviteUser ref={inviteUserRef} setVisible={setInviteUserDisplay} id={id}></InviteUser>}
         <DataGrid
           rows={rows}

@@ -93,7 +93,7 @@ const CommunityPage = () => {
 
   return (
     <div className='flex-1 mt-6 lg:mt-12 flex flex-col lg:flex-row gap-4 lg:gap-6 px-4 lg:px-0'>
-      {editCommunityDisplay && <EditCommunity id={communityId || ''} oldName={community?.name || ''} oldDescription={community?.description || ''} ref={editCommunityRef} setVisible={setEditCommunityDisplay}></EditCommunity>}
+      {editCommunityDisplay && <EditCommunity oldName={community?.name || ''} oldDescription={community?.description || ''} ref={editCommunityRef} setVisible={setEditCommunityDisplay}></EditCommunity>}
       {inviteUserDisplay && <InviteUser ref={inviteUserRef} setVisible={setInviteUserDisplay} id={communityId || ''}></InviteUser>}
       
       {/* Main content area */}

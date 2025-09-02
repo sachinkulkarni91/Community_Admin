@@ -8,12 +8,11 @@ import Input from './Input'
 type Props = {
   ref: React.RefObject<HTMLDivElement | null>
   setVisible: React.Dispatch<React.SetStateAction<boolean>>
-  id: string
   oldName: string
   oldDescription: string
 }
 
-const EditCommunity = ({ref, setVisible, id, oldName, oldDescription} : Props) => {
+const EditCommunity = ({ref, setVisible, oldName, oldDescription} : Props) => {
   const [name, setName] = useState(oldName)
   const [desc, setDesc] = useState(oldDescription)
   const [file, setFile] = useState<File | null>(null)

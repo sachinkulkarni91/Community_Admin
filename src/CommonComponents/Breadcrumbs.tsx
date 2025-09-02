@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 
 interface BreadcrumbItem {
   label: string
@@ -10,19 +9,12 @@ interface BreadcrumbItem {
 const Breadcrumbs = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const [communityName, setCommunityName] = useState<string | null>(null)
 
   // Extract community name from URL if present
   const getCommunityNameFromPath = () => {
     const match = location.pathname.match(/\/community\/([^\/]+)/)
     return match ? decodeURIComponent(match[1]) : null
   }
-
-  // Update community name when path changes
-  useEffect(() => {
-    const name = getCommunityNameFromPath()
-    setCommunityName(name)
-  }, [location.pathname])
 
   // Generate breadcrumbs based on current path
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
