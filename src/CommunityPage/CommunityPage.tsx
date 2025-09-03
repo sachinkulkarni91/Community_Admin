@@ -99,7 +99,14 @@ const CommunityPage = () => {
       {/* Main content area */}
       <div className='w-full lg:w-[638px] flex flex-col gap-4 lg:gap-6 order-2 lg:order-1'>
         {/* Banner image */}
-        <img className='w-full h-24 sm:h-28 lg:h-[126px] object-cover rounded-xl' src="/assets/generic2.png" alt="Generic Image" />
+        <img 
+          className='w-full h-24 sm:h-28 lg:h-[126px] object-cover rounded-xl' 
+          src={imageSrc} 
+          alt={`${community.name} banner`}
+          onError={(e) => {
+            e.currentTarget.src = "/assets/generic2.png";
+          }}
+        />
         
         {/* Community info card */}
         <div className='w-full min-h-[80px] rounded-lg bg-post flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 gap-3 sm:gap-0'>

@@ -145,7 +145,16 @@ const SignupPage = () => {
       </div>
       
       
-      <div className='w-2/5 h-3/4 overflow-hidden rounded-4xl flex items-center my-auto'><img className='w-full h-full object-cover object-[75%_85%]' src="/assets/generic.jpg" alt="" /></div></div>
+      <div className='w-2/5 h-3/4 overflow-hidden rounded-4xl flex items-center my-auto'>
+        <img 
+          className='w-full h-full object-cover object-[75%_85%]' 
+          src="/assets/generic4.jpg" 
+          alt="Signup page background"
+          onError={(e) => {
+            e.currentTarget.src = "/assets/generic1.png";
+          }}
+        />
+      </div></div>
   )
 }
 
