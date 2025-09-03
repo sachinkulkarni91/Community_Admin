@@ -12,7 +12,7 @@ export const createInvite = async (communityId: string) => {
   return response.data;
 }
 
-export const sendInvite = async (communityId: string, email: string) => {
-  const response = await axios.post(`${baseURL}/send`, { communityId, email  });
+export const sendInvite = async (communityId: string, email: string, name: string) => {
+  const response = await axios.post(`${baseURL}/send`, { communityId, email, name });
   return response.data;
 }
