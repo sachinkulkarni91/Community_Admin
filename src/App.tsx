@@ -8,6 +8,7 @@ import SignupPage from './SignupPage/SignupPage'
 import Layout from './CommonComponents/Layout'
 import CommunitiesPage from './CommunitiesPage/CommunitiesPage'
 import CommunityPage from './CommunityPage/CommunityPage'
+import EventsPage from './EventsPage/EventsPage'
 
 function App() {
   const {theme} = useTheme()
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path='/admin' element={<AdminPage/>}></Route>
             <Route path='/admin/communities' element={<CommunitiesPage />} />
+            <Route path='/admin/events' element={<EventsPage />} />
             <Route path='/admin/community/:name' element={<CommunityPage />} />
             <Route path='/community/:name' element={<CommunityPage />} />
             <Route path='/communities' element={<CommunitiesPage />} />

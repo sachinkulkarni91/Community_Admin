@@ -1,16 +1,23 @@
 // services/community.ts
 
 import axios from 'axios'
+import { getAuthHeaders } from '../utils/auth'
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3016';
 
 // Get all communities
 export const getAllCommunities = async () => {
-  const res = await axios.get('/api/communities')
+  const res = await axios.get(`${API_BASE_URL}/api/communities`, {
+    headers: getAuthHeaders()
+  })
   return res.data
 }
 
 // Get one community by ID
 export const getCommunityById = async (id: string) => {
-  const res = await axios.get(`/api/communities/${id}`)
+  const res = await axios.get(`${API_BASE_URL}/api/communities/${id}`, {
+    headers: getAuthHeaders()
+  })
   return res.data
 }
 
@@ -44,10 +51,12 @@ export const createCommunity = async (
   description: string,
   generic: number = 1
 ) => {
-  const res = await axios.post('/api/communities', {
+  const res = await axios.post(`${API_BASE_URL}/api/communities`, {
     name,
     description,
     generic
+  }, {
+    headers: getAuthHeaders()
   })
   return res.data
 }
@@ -61,10 +70,15 @@ export const createCommunityCustom = async (
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await axios.post('/api/communities/custom', {
+  const res = await axios.post(`${API_BASE_URL}/api/communities/custom`, {
     name,
     description,
     formData
+  }, {
+    headers: {
+      ...getAuthHeaders(),
+      // Don't set Content-Type for FormData, let axios handle it
+    }
   })
   return res.data
 }
@@ -75,9 +89,11 @@ export const editCommunity = async (
   name: string,
   description: string,
 ) => {
-  const res = await axios.put(`/api/communities/${id}`, {
+  const res = await axios.put(`${API_BASE_URL}/api/communities/${id}`, {
     name,
     description,
+  }, {
+    headers: getAuthHeaders()
   })
   return res.data
 }
@@ -90,8 +106,9 @@ export const editCommunityPhoto = async (
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await axios.put(`/api/communities/${id}/photo`, formData, {
+  const res = await axios.put(`${API_BASE_URL}/api/communities/${id}/photo`, formData, {
     headers: {
+      ...getAuthHeaders(),
       'Content-Type': 'multipart/form-data'
     }
   })
@@ -109,11 +126,11 @@ export const editCommunityPhotoByName = async (
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await axios.put(`/api/communities/${community.id}/image`, formData, {
+  const res = await axios.put(`${API_BASE_URL}/api/communities/${community.id}/image`, formData, {
     headers: {
+      ...getAuthHeaders(),
       'Content-Type': 'multipart/form-data'
-    },
-    withCredentials: true
+    }
   });
   
   return res.data;
@@ -128,11 +145,11 @@ export const editCommunityByName = async (
   // Get community by name to find its ID
   const community = await getCommunityByName(name);
   
-  const res = await axios.put(`/api/communities/${community.id}`, {
+  const res = await axios.put(`${API_BASE_URL}/api/communities/${community.id}`, {
     name: newName,
     description: description,
   }, {
-    withCredentials: true
+    headers: getAuthHeaders()
   });
   
   return res.data;
@@ -147,6 +164,8 @@ export const deleteCommunityByName = async (name: string) => {
 
 // Delete a community
 export const deleteCommunity = async (id: string) => {
-  const res = await axios.delete(`/api/communities/${id}`)
+  const res = await axios.delete(`${API_BASE_URL}/api/communities/${id}`, {
+    headers: getAuthHeaders()
+  })
   return res.data
 }

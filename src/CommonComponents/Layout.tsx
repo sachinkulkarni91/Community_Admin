@@ -1,13 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AdminSidebar from './AdminSidebar'
 import Topbar from './Topbar'
 import WelcomeBanner from './WelcomeBanner'
 import Breadcrumbs from './Breadcrumbs'
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const Layout = () => {
   const [selected, setSelected] = useState<number>(1)
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false)
+  const location = useLocation()
+
+  // Update selected based on current route
+  useEffect(() => {
+    const path = location.pathname
+    if (path === '/admin') {
+      setSelected(1)
+    } else if (path.includes('/admin/communities')) {
+      setSelected(2)
+    } else if (path.includes('/admin/events')) {
+      setSelected(3)
+    } else if (path.includes('/admin/announcements')) {
+      setSelected(4)
+    }
+  }, [location.pathname])
+
   return (
      <div className='w-full h-full bg-secondary relative flex flex-col'>
       <Topbar></Topbar>
