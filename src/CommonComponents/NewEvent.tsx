@@ -181,7 +181,7 @@ const NewEvent = ({ref, setVisible, onEventCreated} : Props) => {
             <label htmlFor="partnered" className='text-sm text-text font-medium'>Partnered Event</label>
           </div>
           
-          <div className='mb-4 flex flex-col md:flex-row gap-4'>
+          <div className='mb-4 flex flex-row gap-4'>
             <div className='flex-1 flex flex-col'>
               <Input 
                 id="title" 

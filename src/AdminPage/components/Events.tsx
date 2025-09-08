@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Event as ApiEvent } from '../../services/events';
 import { getEvents, deleteEvent, formatEventDate, formatEventTime, getEventStatus } from '../../services/events';
 import NewEvent from '../../CommonComponents/NewEvent';
