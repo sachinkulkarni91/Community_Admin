@@ -179,11 +179,8 @@ const EditEvent = ({ event, setVisible, onEventUpdated }: Props) => {
               setValue={setTitle} 
             />
             <div className='flex flex-col text-left'>
-              <label className='text-xs text-text mb-2 font-medium relative'>
-                <span className='bg-post px-1'>Platform *</span>
-              </label>
               <select
-                className='border border-gray-300 text-text bg-post w-full h-10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00338D] focus:border-transparent'
+                className='border border-gray-300 text-text bg-post w-full h-12 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00338D] focus:border-transparent'
                 value={platform}
                 onChange={(e) => setPlatform(e.target.value as 'virtual' | 'in-person' | 'hybrid')}
               >

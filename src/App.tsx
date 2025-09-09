@@ -1,4 +1,5 @@
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import AnnouncementsPage from './AnnouncementsPage/AnnouncementsPage';
 import './App.css'
 import { ToastContainer } from 'react-toastify'
 import AdminPage from './AdminPage/AdminPage'
@@ -24,6 +25,7 @@ function App() {
             <Route path='/admin/community/:name' element={<CommunityPage />} />
             <Route path='/community/:name' element={<CommunityPage />} />
             <Route path='/communities' element={<CommunitiesPage />} />
+            <Route path='/admin/announcements' element={<AnnouncementsPage />} />
           </Route>
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signup' element={<SignupPage />} />

@@ -21,7 +21,6 @@ const AdminSidebar = ({selected, setSelected, setSidebarOpen} : Props) => {
 
   return (
     <aside className='w-[64px] lg:w-[240px] h-screen bg-white border-r border-gray-200 sticky top-0 pt-6 px-2 lg:px-4 flex flex-col'>
-      
       {/* Navigation Items */}
       <div className='flex flex-col gap-1'>
         <div className={selected == 1 ? selectedStyle : nonSelectedStyle} onClick={() => handleNavigation("/admin", 1)}>
@@ -30,22 +29,19 @@ const AdminSidebar = ({selected, setSelected, setSidebarOpen} : Props) => {
           </svg>
           <span className='hidden lg:block'>My Feed</span>
         </div>
-
         <div className={selected === 2 ? selectedStyle : nonSelectedStyle} onClick={() => handleNavigation("/admin/communities", 2)}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 4C18.21 4 20 5.79 20 8C20 10.21 18.21 12 16 12C13.79 12 12 10.21 12 8C12 5.79 13.79 4 16 4ZM8 4C10.21 4 12 5.79 12 8C12 10.21 10.21 12 8 12C5.79 12 4 10.21 4 8C4 5.79 5.79 4 8 4ZM8 14C12.42 14 16 16.58 16 20V22H0V20C0 16.58 3.58 14 8 14ZM16 14C19.31 14 22 16.69 22 20V22H18V20C18 17.93 16.84 16.16 15.13 15.2C15.41 15.07 15.7 14.96 16 14.9C16 14.93 16 14.97 16 15C16 15.34 16.04 15.67 16.1 16H16C16 14.9 16 14 16 14Z"/>
           </svg>
           <span className='hidden lg:block'>Communities</span>
         </div>
-
         <div className={selected === 3 ? selectedStyle : nonSelectedStyle} onClick={() => handleNavigation("/admin/events", 3)}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V8H19V19ZM7 10H9V12H7V10ZM11 10H13V12H11V10ZM15 10H17V12H15V10ZM7 14H9V16H7V14ZM11 14H13V16H11V14ZM15 14H17V16H15V14Z"/>
           </svg>
           <span className='hidden lg:block'>Events</span>
         </div>
-
-        <div className={selected === 4 ? selectedStyle : nonSelectedStyle} onClick={() => handleNavigation("/admin", 4)}>
+        <div className={selected === 4 ? selectedStyle : nonSelectedStyle} onClick={() => handleNavigation("/admin/announcements", 4)}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L2 7L12 12L22 7L12 2ZM6.55 9.22L12 11.78L17.45 9.22L12 6.66L6.55 9.22ZM2 17L12 22L22 17L20 16L12 20L4 16L2 17Z"/>
           </svg>
